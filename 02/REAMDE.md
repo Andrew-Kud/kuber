@@ -12,7 +12,8 @@ kubectl apply -f echoserver-pod.yaml
 ```
 kubectl get pods
 ```
-# 1-1
+
+<img width="505" height="84" alt="1-1" src="https://github.com/user-attachments/assets/349df097-487d-48e1-b48b-fc50b610c606" />
 
 Если под не стартует или ведёт себя неправильно:
 ```
@@ -129,7 +130,7 @@ kubectl port-forward pod/echoserver 8888:8080
 
 Но это будет работать только с локальными loopback
 
-# 1-2
+<img width="2038" height="531" alt="1-2" src="https://github.com/user-attachments/assets/540d63b4-ed8a-42d5-80f3-ac22d3f2e401" />
 
 А вот как пробросить в сеть:
 ```
@@ -140,8 +141,7 @@ kubectl port-forward --address 127.0.0.1,192.168.10.26 pod/echoserver 8888:8080
 kubectl port-forward --address 0.0.0.0 pod/echoserver 8888:8080
 ```
 
-# 1-3
-
+<img width="2116" height="655" alt="1-3" src="https://github.com/user-attachments/assets/d7a34abc-a940-4f8c-8459-23f434f264da" />
 
 3.
 Удалить тестовый pod:
@@ -194,7 +194,7 @@ kubectl get pods
 kubectl get svc
 ```
 
-# 2-1
+<img width="614" height="124" alt="2-1" src="https://github.com/user-attachments/assets/98638555-031a-4cf2-9db0-df9de0d59181" />
 
 Service получил IP 10.152.183.29. Этот IP принадлежит Service, а не VM.
 
@@ -203,7 +203,7 @@ Service получил IP 10.152.183.29. Этот IP принадлежит Serv
 kubectl describe svc netology-svc
 ```
 
-# 2-2
+<img width="506" height="292" alt="2-2" src="https://github.com/user-attachments/assets/8d552979-9405-4eb3-abf6-02e6150ec6a0" />
 
 Endpoints показывает адреса Pod, доступных через Service.
 
@@ -219,7 +219,7 @@ svc/netology-svc — обращаемся к Service.
 80 — порт Service.
 8080 — конечный порт Pod, указанный через targetPort в YAML
 
-# 2-3
+<img width="2025" height="528" alt="2-3" src="https://github.com/user-attachments/assets/48276080-3a12-4123-8ced-ad2bce33a071" />
 
 Находит Pod через Service и создаёт туннель непосредственно к выбранному Pod. Сам сетевой механизм ClusterIP при этом не проверяется.
 
@@ -232,7 +232,7 @@ kubectl port-forward --address 0.0.0.0 svc/netology-svc 8888:80
 http://192.168.10.26:8888/
 ```
 
-# 2-4
+<img width="860" height="771" alt="2-4" src="https://github.com/user-attachments/assets/84571531-ca25-4bb8-8929-d200157fcbcf" />
 
 4.
 Удалить ресурсы:
