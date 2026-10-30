@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-init-demo
+  namespace: lesson2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-init-demo
+  template:
+    metadata:
+      labels:
+        app: nginx-init-demo
+    spec:
+      initContainers:
+        - name: wait-for-service
+          image: busybox:1.36.1
+          command:
+            - sh
+            - -c
+            - |
+              until nslookup nginx-service.lesson2.svc.cluster.local; do
+                echo "Waiting for nginx-service..."
+                sleep 3
+              done
+              echo "Service found! Init completed."
+
+      containers:
+        - name: nginx
+          image: nginx:stable-alpine
+          ports:
+            - containerPort: 80
