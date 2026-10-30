@@ -70,7 +70,7 @@ microk8s kubectl -n lesson1 get deployments
 microk8s kubectl -n lesson1 get pods
 ```
 
-# 1-1
+<img width="583" height="171" alt="1-1" src="https://github.com/user-attachments/assets/c5f9ee53-cfed-4b8e-8773-df79e9c5197b" />
 
 5.
 Поиск причины `Error`:
@@ -97,7 +97,7 @@ microk8s kubectl -n lesson1 logs demo-web-698ff69777-ccgmp --all-containers=true
 Проблема - оба контейнера используют 80 tcp порт.
 Два приложения не могут одновременно слушать один и тот же IP:порт при обычных настройках
 
-# 1-2
+<img width="1178" height="651" alt="1-2" src="https://github.com/user-attachments/assets/5499ae56-c996-442f-82ee-69e28352974c" />
 
 6.
 в `deployment.yml` заменить настройки контейнера для `multitool` для портов:
@@ -141,7 +141,7 @@ microk8s kubectl -n lesson1 exec deployment/demo-web -c multitool -- curl -sSI h
 microk8s kubectl -n lesson1 exec deployment/demo-web -c multitool -- curl -sS http://localhost:8080
 ```
 
-# 1-3
+<img width="1201" height="351" alt="1-3" src="https://github.com/user-attachments/assets/5d00d41a-3ed4-4f8e-9b1f-8cff91189d15" />
 
 8.
 Масштабирование до 2-ух реплик:
@@ -172,8 +172,7 @@ microk8s kubectl -n lesson1 get deployment demo-web
 
 команда scale изменила состояние в кластере, но в файле deployment.yaml осталось replicas: 1. Чтобы файл соответствовал фактическому состоянию, нужно поменять в `.yaml` файле `replicas: 1` -> `replicas: 2`. И снова выполнить `apply`, в противном случае повторное использование старого конфигу уменьшит число реплик до 1.
 
-
-# 1-4
+<img width="1039" height="312" alt="1-4" src="https://github.com/user-attachments/assets/53b8b96e-3135-4f37-8abf-a13beebe058b" />
 
 9.
 Создание service.
@@ -206,7 +205,7 @@ endpoints:
   - addresses:
     - показывает ip упрвляемых подов.
 
-# 1-5
+<img width="1043" height="1181" alt="1-5" src="https://github.com/user-attachments/assets/1958e76c-c81f-4cc7-9475-3756c307ed2a" />
 
 11.
 Создание отдельного пода для проверки.
@@ -229,7 +228,7 @@ microk8s kubectl -n lesson1 run curl-client --image=wbitt/network-multitool --re
 microk8s kubectl -n lesson1 get pods
 ```
 
-# 1-6
+<img width="521" height="148" alt="1-6" src="https://github.com/user-attachments/assets/19c5c63c-1c1a-4064-8cb6-b039ea802da1" />
 
 12.
 Проверка через `curl`:
@@ -262,7 +261,7 @@ nslookup demo-web.lesson1.svc.cluster.local
 exit
 ```
 
-# 1-7
+<img width="1184" height="714" alt="1-7" src="https://github.com/user-attachments/assets/ece7b2a1-e440-4064-87e7-38dc254e0ece" />
 
 13.
 Мне показалось недостаточно полагаться на `curl` в качестве единичной проверки. Это не доказывает, что доступны обе реплики. Можно через цикл обратиться к каждой реплики напрямую через `curl-client`:
@@ -328,7 +327,7 @@ microk8s kubectl apply -f deployment.yaml
 microk8s kubectl -n lesson2 get pods
 ```
 
-# 2-1
+<img width="778" height="149" alt="2-1" src="https://github.com/user-attachments/assets/d14d3f09-86de-4d8d-8024-e29e05f75160" />
 
 4.
 `Init:0/1` - под находится в процессе инициализации: один init контейнер предусмотрен, но ни один не завершился успешно. по этому `READY 0/1`.
@@ -343,7 +342,7 @@ microk8s kubectl -n lesson2 logs deployment/nginx-init-demo -c wait-for-service
 microk8s kubectl -n lesson2 logs deployment/nginx-init-demo -c nginx
 ```
 
-# 2-2
+<img width="1049" height="349" alt="2-2" src="https://github.com/user-attachments/assets/ba383208-6947-44ad-b252-650b2dfabbad" />
 
 `nginx` ещё не запущен, поскольку `service` отсутствует.
 
@@ -369,13 +368,13 @@ microk8s kubectl -n lesson2 get svc
 microk8s kubectl -n lesson2 get pods
 ```
 
-# 2-3
+<img width="784" height="179" alt="2-3" src="https://github.com/user-attachments/assets/ca990e99-d150-4ac7-b29b-64695137f346" />
 
 ```
 microk8s kubectl -n lesson2 logs deployment/nginx-init-demo -c wait-for-service
 ```
 
-# 2-4
+<img width="587" height="428" alt="2-4" src="https://github.com/user-attachments/assets/ea5c9b75-1f69-4911-8627-b050cc296d8a" />
 
 busybox обнаружил service через dns -> цикл until завершился -Ю init контейнер закончил работу с кодом 0 -> кубер запустил основной контейнер nginx.
 
@@ -388,7 +387,7 @@ microk8s kubectl -n lesson2 get pods
 microk8s kubectl -n lesson2 describe pod nginx-init-demo-cbd84b774-ts6ch
 ```
 
-# 2-5
+<img width="963" height="1096" alt="2-5" src="https://github.com/user-attachments/assets/35aa080c-0203-43c7-a0c4-965183f7cc65" />
 
 8.
 Проверка http доступность nginx:
@@ -396,7 +395,7 @@ microk8s kubectl -n lesson2 describe pod nginx-init-demo-cbd84b774-ts6ch
 microk8s kubectl -n lesson1 exec curl-client -- curl -I http://nginx-service.lesson2.svc.cluster.local
 ```
 
-# 2-6
+<img width="1119" height="303" alt="2-6" src="https://github.com/user-attachments/assets/5997472b-58b5-43df-a812-9e4917ff9f39" />
 
 ---
 
@@ -414,14 +413,14 @@ microk8s kubectl -n lesson2 delete service nginx-service
 ```
 - уже запущенный nginx при этом не остановится, initконтейнер не выполняет проверку постоянно.
 
-# 3-1
+<img width="827" height="810" alt="3-1" src="https://github.com/user-attachments/assets/0417d0df-4be5-44b4-8e1c-6f5047ef6bad" />
 
 Пересоздай под:
 ```
 microk8s kubectl -n lesson2 rollout restart deployment/nginx-init-demo
 ```
 
-# 3-2
+<img width="835" height="891" alt="3-2" src="https://github.com/user-attachments/assets/f62b6754-eb55-473e-b8bb-ca522710ec22" />
 
 Снова сосздай service:
 ```
@@ -429,7 +428,7 @@ microk8s kubectl apply -f service.yaml
 ```
 - увидишь переход с промежуточными состояниями в `STATUS`.
 
-# 3-3
+<img width="924" height="1032" alt="3-3" src="https://github.com/user-attachments/assets/fd279b7b-bd59-413d-bb07-84c628f35c3b" />
 
 ---
 
