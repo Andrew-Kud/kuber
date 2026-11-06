@@ -28,7 +28,7 @@ microk8s kubectl get pods -A
 - coredns - dns внутри кластера.
 - kubelite - управляющие компоненты.
 
-# 1-1
+<img width="772" height="85" alt="1-1" src="https://github.com/user-attachments/assets/bc07af5f-a4e6-48a3-850f-86a4ab2bb798" />
 
 2.
 Включить dns:
@@ -65,7 +65,7 @@ microk8s kubectl -n network-lab rollout status deployment/web-app
 microk8s kubectl -n network-lab get pods -o wide
 ```
 
-# 1-2
+<img width="982" height="227" alt="1-2" src="https://github.com/user-attachments/assets/421f7640-34e2-482e-b8a8-492f26ccb02d" />
 
 4.
 Создаю service.yaml.
@@ -85,7 +85,7 @@ microk8s kubectl -n network-lab get svc app-service
 microk8s kubectl -n network-lab get endpointslices -l kubernetes.io/service-name=app-service
 ```
 
-# 1-3
+<img width="700" height="158" alt="1-3" src="https://github.com/user-attachments/assets/0aab0204-ed1d-4746-9859-308a5014c2a9" />
 
 5.
 Создам отдельный под для тестирования client-pod.yaml.
@@ -113,7 +113,7 @@ multitool — порт 9002
 microk8s kubectl -n network-lab exec network-client -- curl -fsS http://app-service:9002/
 ```
 
-# 1-4
+<img width="1135" height="601" alt="1-4" src="https://github.com/user-attachments/assets/a1d71bda-32db-4847-897a-1f0bce070ba8" />
 
 6.
 Проверка dns:
@@ -131,6 +131,8 @@ multitool:
 ```
 microk8s kubectl -n network-lab exec network-client -- curl -fsS http://app-service.network-lab.svc.cluster.local:9002/
 ```
+
+<img width="1209" height="761" alt="1-5" src="https://github.com/user-attachments/assets/f59f4e63-095d-4381-9dc9-e6d57e07696c" />
 
 ---
 
@@ -159,7 +161,7 @@ microk8s kubectl -n network-lab get endpointslices -l kubernetes.io/service-name
 ```
 - Service может успешно создаться даже тогда, когда его selector не совпадает ни с одним Pod. В этом случае запросы к приложению не будут проходит.
 
-# 2-1
+<img width="762" height="154" alt="2-1" src="https://github.com/user-attachments/assets/7b03a3d7-5c2d-4184-beee-c92e2e4a2ba0" />
 
 2.
 Проверка доступности:
@@ -178,7 +180,7 @@ http://192.168.10.26:30080/
 
 Локальный пк -> VM:30080 -> Service -> nginx:80
 
-# 2-2
+<img width="2560" height="861" alt="2-2" src="https://github.com/user-attachments/assets/8a050242-6674-43c6-9cb3-286f1f58bff5" />
 
 В production не используй NodePort как публичный вход для веб-приложения. Перед приложением ставят Ingress Controller, а доступ к сетевым портам узлов ограничивается.
 
