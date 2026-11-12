@@ -39,16 +39,17 @@ microk8s kubectl exec deploy/shared-volume-demo -c busybox -- cat /shared/timest
 microk8s kubectl exec deploy/shared-volume-demo -c multitool -- cat /shared/timestamps.log
 ```
 
-# 1-1
+<img width="771" height="1235" alt="1-1" src="https://github.com/user-attachments/assets/05a59085-c151-4588-85fb-f2f066fa4447" />
+
 
 Чтение в реальном времени
 ```
 microk8s kubectl exec -it deploy/shared-volume-demo -c multitool -- tail -n 0 -f /shared/timestamps.log
 ```
 
-# 1-2
+<img width="1083" height="169" alt="1-2" src="https://github.com/user-attachments/assets/aa2a1758-4306-44ab-afb0-e3b00d86c0a9" />
 
-# 1-3
+<img width="1049" height="237" alt="1-3" src="https://github.com/user-attachments/assets/22c418f4-2287-4fdf-971e-9984cabca2ff" />
 
 
 4.
@@ -120,7 +121,7 @@ microk8s kubectl exec "$POD" -- ls -l /host/var/log/syslog
 microk8s kubectl exec "$POD" -- tail -n 20 /host/var/log/syslog
 ```
 
-# 2-1
+<img width="1282" height="917" alt="2-1" src="https://github.com/user-attachments/assets/d2a66b25-7faa-479d-afad-c5a1da96001e" />
 
 доп.проверка:
 ```
@@ -133,7 +134,8 @@ sudo grep "DaemonSet hostPath test" /var/log/syslog
 microk8s kubectl exec "$POD" -- grep "DaemonSet hostPath test" /host/var/log/syslog
 ```
 
-# 2-2
+<img width="923" height="108" alt="2-2" src="https://github.com/user-attachments/assets/560940e0-6893-4c95-9cd5-6e1a73d8c200" />
+
 
 
 5.
