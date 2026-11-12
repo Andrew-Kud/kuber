@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-syslog-reader
+
+spec:
+  selector:
+    matchLabels:
+      app: node-syslog-reader
+
+  template:
+    metadata:
+      labels:
+        app: node-syslog-reader
+
+    spec:
+      containers:
+        - name: multitool
+          image: wbitt/network-multitool:3.24.4
+          volumeMounts:
+            - name: host-syslog
+              mountPath: /host/var/log/syslog
+              readOnly: true
+
+      volumes:
+        - name: host-syslog
+          hostPath:
+            path: /var/log/syslog
+            type: File
