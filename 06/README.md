@@ -54,7 +54,8 @@ microk8s kubectl -n k8s-lab port-forward deployment/web-demo 8080:80
 curl -i http://127.0.0.1:8080
 ```
 
-# 1-1
+<img width="1316" height="1397" alt="1-1" src="https://github.com/user-attachments/assets/9b11b216-3ea1-40dd-bef2-31df4997a905" />
+
 
 Изменил заголовок в configmap-web.yaml для проверки configmap и применил.
 ```
@@ -68,7 +69,8 @@ microk8s kubectl -n k8s-lab port-forward deployment/web-demo 8080:80
 curl -i http://127.0.0.1:8080
 ```
 
-# 1-2
+<img width="819" height="1027" alt="1-2" src="https://github.com/user-attachments/assets/7b13fc0b-eb35-443c-9bf4-a293d80d3aec" />
+
 
 вывод:
 - перезапуск deploment не нужен. кубер обновляет смонтированные файлы configmap автоматически.
@@ -187,7 +189,8 @@ curl -k -i --resolve myapp.example.com:443:127.0.0.1 https://myapp.example.com/
 ```
 - команда рассчитана на то, что ingress контролер доступен по 443.
 
-# 2-1
+<img width="954" height="836" alt="2-1" src="https://github.com/user-attachments/assets/118f2ce6-4353-4e71-b0ba-a07b78516e8d" />
+
 
 12.
 проверка валидности серта:
@@ -196,7 +199,8 @@ curl -k -i --resolve myapp.example.com:443:127.0.0.1 https://myapp.example.com/
 echo | openssl s_client -connect 127.0.0.1:443 -servername myapp.example.com 2>/dev/null | openssl x509 -noout -subject -issuer
 ```
 
-# 2-2
+<img width="286" height="127" alt="2-2" src="https://github.com/user-attachments/assets/d9cac821-a517-4129-8a0c-0b62020bd160" />
+
 
 # 3:
 
@@ -271,7 +275,8 @@ openssl x509 -in developer.crt -noout -subject -issuer -dates -ext extendedKeyUs
 openssl verify -CAfile ca.crt developer.crt
 ```
 
-# 3-1
+<img width="954" height="419" alt="3-1" src="https://github.com/user-attachments/assets/c077e200-5860-48df-8aa1-976b31735db6" />
+
 
 5.
 создай роль - task3/role.yaml
@@ -297,7 +302,8 @@ microk8s kubectl apply -f rolebinding.yaml
 microk8s kubectl get role,rolebinding -n k8s-lab
 ```
 
-# 3-2
+<img width="772" height="246" alt="3-2" src="https://github.com/user-attachments/assets/0f0d3ef0-75d9-459f-8c2f-7afcda06f73d" />
+
 
 8.
 создай отдельный kubeconfig для developer юзера.
@@ -391,7 +397,8 @@ microk8s kubectl --kubeconfig="$PWD/developer.kubeconfig" logs "$POD" -c nginx -
 ```
 - должен увидить логи.
 
-# 3-3
+<img width="1143" height="1249" alt="3-3" src="https://github.com/user-attachments/assets/1d6ab8d0-d17e-4941-ab8d-a05099019861" />
+
 
 14.
 проверка запрещённых операция:
@@ -422,7 +429,8 @@ microk8s kubectl --kubeconfig="$PWD/developer.kubeconfig" auth can-i get pods -n
 
 сертификат не определяет права пользователя, он подтверждает, что пользователь - developer. роли определяют, что он может делать, а rolebinding связывает эти права с пользователем.
 
-# 3-4
+
+<img width="1288" height="424" alt="3-4" src="https://github.com/user-attachments/assets/48e24994-6544-46d6-a469-07d77909a955" />
 
 15.
 удалить созданные ресурсы:
