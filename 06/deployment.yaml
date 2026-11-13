@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-demo
+  template:
+    metadata:
+      labels:
+        app: web-demo
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:stable-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: web-content
+              mountPath: /usr/share/nginx/html
+              readOnly: true
+
+        - name: multitool
+          image: wbitt/network-multitool:3.24.4
+          env:
+            - name: HTTP_PORT
+              value: "8081"
+            - name: HTTPS_PORT
+              value: "8443"
+          ports:
+            - containerPort: 8081
+
+      volumes:
+        - name: web-content
+          configMap:
+            name: nginx-web-content
