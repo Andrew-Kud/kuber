@@ -98,7 +98,7 @@ helm list -A
 ```
 после чего повтори первую команду.
 
-# 1-1
+<img width="1058" height="183" alt="1-1" src="https://github.com/user-attachments/assets/92a18afd-f54b-400e-a322-2e2e5ae4a263" />
 
 
 6.
@@ -116,7 +116,7 @@ microk8s kubectl get pods -n dev
 microk8s kubectl get svc -n dev
 ```
 
-# 1-2
+<img width="1009" height="296" alt="1-2" src="https://github.com/user-attachments/assets/c6ae1359-72ed-4237-9c7f-a1466007254d" />
 
 в одном окне терминала:
 ```
@@ -127,7 +127,7 @@ microk8s kubectl -n dev port-forward svc/demoapp-frontend 8080:80
 curl http://127.0.0.1:8080/api/
 ```
 
-# 1-3
+<img width="921" height="897" alt="1-3" src="https://github.com/user-attachments/assets/a42a8b66-edf4-4384-8bdc-17f858c8f735" />
 
 
 7.
@@ -140,7 +140,8 @@ helm upgrade --install demoapp ./ -n prod --create-namespace -f ./values-prod.ya
 microk8s kubectl get deployments,pods -n prod
 ```
 
-# 1-4
+<img width="1078" height="369" alt="1-4" src="https://github.com/user-attachments/assets/ab4e7ef5-b524-40c1-ad42-0bb7e49d0f32" />
+
 
 - helm управляет двумя независимыми релизами с именем demoapp, расположенными в разных namespace.
 ```
@@ -151,7 +152,7 @@ microk8s kubectl get deployments,pods -A
 microk8s kubectl get deployments,pods -A | grep -E 'NAMESPACE|demoapp'
 ```
 
-# 1-5
+<img width="816" height="379" alt="1-5" src="https://github.com/user-attachments/assets/42f853d2-1c8d-40ca-9912-6aef52882a76" />
 
 
 8.
@@ -192,7 +193,7 @@ microk8s kubectl -n dev get deployment demoapp-frontend -o jsonpath='{.spec.temp
 
 - helm обнаружил изменение в шаблоне deployment и отправил обновлённую конфигурацию в кубер. Контроллер deployment создал pod с новым образом, выполнив rolling update. Версия backend не изменилась.
 
-# 1-6
+<img width="1234" height="936" alt="1-6" src="https://github.com/user-attachments/assets/02cf2bf9-158c-42ea-b002-827eeefc80d6" />
 
 
 9.
@@ -214,7 +215,7 @@ microk8s kubectl -n dev get deployment demoapp-frontend -o jsonpath='{.spec.temp
 `nginx:1.30.0-alpine`
 - rollback возвращает kuber-ресурсы к прежней конфигурации helm-релиза, но не откатывает данные в БД или томах.
 
-# 1-7
+<img width="1161" height="198" alt="1-7" src="https://github.com/user-attachments/assets/1be1f831-bf8e-4d3c-81fb-62a7c5a27e01" />
 
 
 10.
@@ -224,7 +225,8 @@ helm package ./
 ```
 - этот helmпакет, который можно перенести на другую машину или опубликовать в репозитории.
 
-# 1-8
+<img width="762" height="133" alt="1-8" src="https://github.com/user-attachments/assets/6fd387f4-ecba-4403-a0f2-d9996b0436f9" />
+
 
 проверка:
 ```
@@ -288,7 +290,8 @@ microk8s kubectl get deployments,pods,svc -n app2
 microk8s kubectl get deployments -A -l app.kubernetes.io/name=demoapp -o custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,IMAGE:.spec.template.spec.containers[0].image,READY:.status.readyReplicas'
 ```
 
-# 2-1
+<img width="1281" height="1405" alt="2-1" src="https://github.com/user-attachments/assets/608d0c87-2da8-4f1c-9561-84dee9f9355f" />
+
 
 
 3.
@@ -320,11 +323,11 @@ curl -fsS --retry 5 --retry-connrefused http://127.0.0.1:8083/api/
 kill "$P1" "$P2" "$P3"
 ```
 
-# 2-2
+<img width="1102" height="903" alt="2-2" src="https://github.com/user-attachments/assets/d47b86e6-cdf3-436a-8d4a-a3f8d08bd398" />
 
 
 4.
-# 2-3
+<img width="1271" height="460" alt="2-3" src="https://github.com/user-attachments/assets/d466dff6-3d72-4cfb-991b-17b76730f991" />
 
 
 ---
