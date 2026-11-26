@@ -1,0 +1,5 @@
+frontend:
+  replicaCount: 1
+backend:
+  replicaCount: 1
+  message: "Hello from DEV"
